@@ -66,7 +66,9 @@ EOF
 
     # Persistence path
     cache_dir="$HOME/.cache/remarkable"
-    ln -s "$cache_dir" "$WINEPREFIX/drive_c/users/$USER/AppData/Roaming/remarkable"
+    mkdir -p "$cache_dir/desktop"
+    # ln -s "$cache_dir" "$WINEPREFIX/drive_c/users/$USER/Application Data/remarkable"
+    ln -s "$WINEPREFIX/drive_c/users/$USER/Application Data/remarkable" "$cache_dir"
 
     # Run app
     binpath="$WINEPREFIX/drive_c/Program Files (x86)/reMarkable"
