@@ -61,7 +61,14 @@ EOF
     cat > ./logpixels.reg<< EOF
 ${reg_entries}
 EOF
+    # Set DPI to 0x80/128 (might be able to go a bit higher).
     regedit ./logpixels.reg 
+
+    # Persistence path
+    cache_dir="$HOME/.cache/remarkable"
+    ln -s "$cache_dir" "$WINEPREFIX/drive_c/users/$USER/AppData/Roaming/remarkable"
+
+    # Run app
     binpath="$WINEPREFIX/drive_c/Program Files (x86)/reMarkable"
     wine "$binpath/reMarkable.exe" "$ARGS"
   '';
