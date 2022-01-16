@@ -68,13 +68,15 @@ EOF
     cache_dir="$HOME/.cache/remarkable"
     mkdir -p "$cache_dir/data/desktop"
     mkdir -p "$cache_dir/local/desktop"
+    mkdir -p "$cache_dir/Cookies"
     mkdir -p "$cache_dir/upper_dir"
     data_dir="$WINEPREFIX/drive_c/users/$USER/Application Data/remarkable"
     local_dir="$WINEPREFIX/drive_c/users/$USER/Local Settings/Application Data/remarkable"
-    upper_dir="$WINEPREFIX/../upper_dir"
+    cookies_dir="$WINEPREFIX/drive_c/users/$USER/Cookies"
     ln -sf "$cache_dir/data" "$data_dir" 
     ln -sf "$cache_dir/local" "$local_dir" 
-    ln -sf "$cache_dir/upper_dir" "$upper_dir" 
+    ln -sf "$cache_dir/Cookies" "$cookies_dir" 
+    ln -sf "$cache_dir/user.reg" "$WINEPREFIX/user.reg" 
 
     # Run app
     binpath="$WINEPREFIX/drive_c/Program Files (x86)/reMarkable"
