@@ -79,7 +79,9 @@ EOF
     ln -sf "$cache_dir/local" "$local_dir" 
     rm -rf "$cookies_dir"
     ln -sf "$cache_dir/Cookies" "$cookies_dir" 
+    echo "Removing $user_reg"
     rm -rf "$user_reg"
+    echo "linking $user_reg to $cache_dir/user.reg"
     ln -sf "$cache_dir/user.reg" "$user_reg" 
 
     # Run app
