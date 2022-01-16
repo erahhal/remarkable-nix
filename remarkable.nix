@@ -70,7 +70,7 @@ EOF
     data_dir="$WINEPREFIX/drive_c/users/$USER/Application Data/remarkable"
     rmdir "$data_dir/desktop"
     rmdir "$data_dir"
-    ln -sf "$data_dir" "$cache_dir"
+    ln -sf "$cache_dir" "$data_dir" 
 
     # Run app
     binpath="$WINEPREFIX/drive_c/Program Files (x86)/reMarkable"
