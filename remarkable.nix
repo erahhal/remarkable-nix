@@ -42,11 +42,11 @@ mkWindowsApp rec {
   # WINEPREFIX, WINEARCH, AND WINEDLLOVERRIDES are set
   # and wine, winetricks, and cabextract are in the environment.
   winAppInstall = ''
-    cat >> ./logpixels.reg<< EOF
+    cat > ./logpixels.reg<< EOF
 ${reg_entries}
 EOF
     regedit ./logpixels.reg 
-    rm logpixels.reg
+    rm ./logpixels.reg
     wine ${src}
   '';
 
@@ -59,12 +59,12 @@ EOF
   # You need to set up symlinks for any files/directories that need to be persisted.
   # To figure out what needs to be persisted, take at look at $(dirname $WINEPREFIX)/upper
   winAppRun = ''
-    cat >> ./logpixels.reg<< EOF
+    cat > ./logpixels.reg<< EOF
 ${reg_entries}
 EOF
     # Set DPI to 0x80/128 (might be able to go a bit higher).
     regedit ./logpixels.reg 
-    rm logpixels.reg
+    rm ./logpixels.reg
 
     # Persistence path
     cache_dir="$HOME/.cache/remarkable"
