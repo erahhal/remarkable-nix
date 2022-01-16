@@ -42,11 +42,12 @@ mkWindowsApp rec {
   # WINEPREFIX, WINEARCH, AND WINEDLLOVERRIDES are set
   # and wine, winetricks, and cabextract are in the environment.
   winAppInstall = ''
-    cat > ./logpixels.reg<< EOF
+    tmpdir=$(mktemp -d)
+    cat > $tmpdir/logpixels.reg<< EOF
 ${reg_entries}
 EOF
-    regedit ./logpixels.reg 
-    rm ./logpixels.reg
+    regedit $tmpdir/logpixels.reg 
+    rm -rf $tmpdir
     wine ${src}
   '';
 
@@ -59,9 +60,13 @@ EOF
   # You need to set up symlinks for any files/directories that need to be persisted.
   # To figure out what needs to be persisted, take at look at $(dirname $WINEPREFIX)/upper
   winAppRun = ''
-    cat > ./logpixels.reg<< EOF
+    tmpdir=$(mktemp -d)
+    cat > $tmpdir/logpixels.reg<< EOF
 ${reg_entries}
 EOF
+    regedit $tmpdir/logpixels.reg 
+    rm -rf $tmpdir
+
     # Set DPI to 0x80/128 (might be able to go a bit higher).
     regedit ./logpixels.reg 
     rm ./logpixels.reg
