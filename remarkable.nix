@@ -64,34 +64,40 @@ EOF
     cat > $tmpdir/logpixels.reg<< EOF
 ${reg_entries}
 EOF
+    # Set DPI to 0x80/128 (might be able to go a bit higher).
     regedit $tmpdir/logpixels.reg 
     rm -rf $tmpdir
-
-    # Set DPI to 0x80/128 (might be able to go a bit higher).
-    regedit ./logpixels.reg 
-    rm ./logpixels.reg
 
     # Persistence path
     cache_dir="$HOME/.cache/remarkable"
     mkdir -p "$cache_dir/data/desktop"
     mkdir -p "$cache_dir/local/desktop"
     mkdir -p "$cache_dir/Cookies"
-    data_dir="$WINEPREFIX/drive_c/users/$USER/Application Data/remarkable"
-    local_dir="$WINEPREFIX/drive_c/users/$USER/Local Settings/Application Data/remarkable"
-    cookies_dir="$WINEPREFIX/drive_c/users/$USER/Cookies"
-    system_reg="$WINEPREFIX/system.reg"
-    user_reg="$WINEPREFIX/user.reg"
-    userdef_reg="$WINEPREFIX/userdef.reg"
-    ln -sf "$cache_dir/data" "$data_dir" 
-    ln -sf "$cache_dir/local" "$local_dir" 
-    rm -rf "$cookies_dir"
-    ln -sf "$cache_dir/Cookies" "$cookies_dir" 
-    rm -rf "$system_reg"
-    ln -sf "$cache_dir/system.reg" "$system_reg" 
-    rm -rf "$user_reg"
-    ln -sf "$cache_dir/user.reg" "$user_reg" 
-    rm -rf "$userdef_reg"
-    ln -sf "$cache_dir/userdef.reg" "$userdef_reg" 
+    data_dir="drive_c/users/$USER/Application Data/remarkable"
+    local_dir="drive_c/users/$USER/Local Settings/Application Data/remarkable"
+    cookies_dir="drive_c/users/$USER/Cookies"
+
+    # ln -sf "$HOME/.wine/data" "$WINEPREFIX/$data_dir" 
+    # ln -sf "$cache_dir/local" "$WINEPREFIX/$local_dir" 
+    # rm -rf "$WINEPREFIX/$cookies_dir"
+    # ln -sf "$cache_dir/Cookies" "$WINEPREFIX/$cookies_dir" 
+    # rm -rf "$WINEPREFIX/system.reg"
+    # ln -sf "$cache_dir/system.reg" "$WINEPREFIX/system.reg" 
+    # rm -rf "$WINEPREFIX/user.reg"
+    # ln -sf "$cache_dir/user.reg" "$WINEPREFIX/user.reg" 
+    # rm -rf "$WINEPREFIX/userdef.reg"
+    # ln -sf "$cache_dir/userdef.reg" "$WINEPREFIX/userdef.reg" 
+
+    ln -sf "$HOME/.wine/$data_dir" "$WINEPREFIX/$data_dir" 
+    ln -sf "$HOME/.wine/$local_dir" "$WINEPREFIX/$local_dir" 
+    rm -rf "$WINEPREFIX/$cookies_dir"
+    ln -sf "$HOME/.wine/$cookies_dir" "$WINEPREFIX/$cookies_dir" 
+    rm -rf "$WINEPREFIX/system.reg"
+    ln -sf "$HOME/.wine/system.reg" "$WINEPREFIX/system.reg" 
+    rm -rf "$WINEPREFIX/user.reg"
+    ln -sf "$HOME/.wine/user.reg" "$WINEPREFIX/user.reg" 
+    rm -rf "$WINEPREFIX/userdef.reg"
+    ln -sf "$HOME/userdef.reg" "$WINEPREFIX/userdef.reg" 
 
     # Run app
     binpath="$WINEPREFIX/drive_c/Program Files (x86)/reMarkable"
