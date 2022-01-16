@@ -68,9 +68,10 @@ EOF
     cache_dir="$HOME/.cache/remarkable"
     mkdir -p "$cache_dir/desktop"
     data_dir ="$WINEPREFIX/drive_c/users/$USER/Application Data/remarkable"
+    echo $data_dir
     rmdir "$data_dir/desktop"
     rmdir "$data_dir"
-    ln -s "$data_dir" "$cache_dir"
+    ln -sf "$data_dir" "$cache_dir"
 
     # Run app
     binpath="$WINEPREFIX/drive_c/Program Files (x86)/reMarkable"
