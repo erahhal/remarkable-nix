@@ -88,7 +88,9 @@ EOF
     # rm -rf "$WINEPREFIX/userdef.reg"
     # ln -sf "$cache_dir/userdef.reg" "$WINEPREFIX/userdef.reg" 
 
+    mkdir -p "$HOME/.wine/$data_dir/desktop"
     ln -sf "$HOME/.wine/$data_dir" "$WINEPREFIX/$data_dir" 
+    mkdir -p "$HOME/.wine/$local_dir/desktop"
     ln -sf "$HOME/.wine/$local_dir" "$WINEPREFIX/$local_dir" 
     rm -rf "$WINEPREFIX/$cookies_dir"
     ln -sf "$HOME/.wine/$cookies_dir" "$WINEPREFIX/$cookies_dir" 
@@ -97,7 +99,7 @@ EOF
     rm -rf "$WINEPREFIX/user.reg"
     ln -sf "$HOME/.wine/user.reg" "$WINEPREFIX/user.reg" 
     rm -rf "$WINEPREFIX/userdef.reg"
-    ln -sf "$HOME/userdef.reg" "$WINEPREFIX/userdef.reg" 
+    ln -sf "$HOME/.wine/userdef.reg" "$WINEPREFIX/userdef.reg" 
 
     # Run app
     binpath="$WINEPREFIX/drive_c/Program Files (x86)/reMarkable"
