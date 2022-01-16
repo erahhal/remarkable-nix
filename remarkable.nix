@@ -67,8 +67,7 @@ EOF
     # Persistence path
     cache_dir="$HOME/.cache/remarkable"
     mkdir -p "$cache_dir/desktop"
-    data_dir ="$WINEPREFIX/drive_c/users/$USER/Application Data/remarkable"
-    echo $data_dir
+    data_dir="$WINEPREFIX/drive_c/users/$USER/Application Data/remarkable"
     rmdir "$data_dir/desktop"
     rmdir "$data_dir"
     ln -sf "$data_dir" "$cache_dir"
