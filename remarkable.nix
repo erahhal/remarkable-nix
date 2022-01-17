@@ -100,6 +100,12 @@ EOF
 
     rm -rf "$WINEPREFIX/drive_c/users"
     ln -sf "$HOME/.wine/drive_c/users" "$WINEPREFIX/drive_c/uesrs"
+    rm -rf "$WINEPREFIX/system.reg"
+    ln -sf "$HOME/.wine/system.reg" "$WINEPREFIX/system.reg" 
+    rm -rf "$WINEPREFIX/user.reg"
+    ln -sf "$HOME/.wine/user.reg" "$WINEPREFIX/user.reg" 
+    rm -rf "$WINEPREFIX/userdef.reg"
+    ln -sf "$HOME/.wine/userdef.reg" "$WINEPREFIX/userdef.reg" 
 
     # Run app
     binpath="$WINEPREFIX/drive_c/Program Files (x86)/reMarkable"
